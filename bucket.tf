@@ -83,7 +83,7 @@ module "vpc_flow_logs_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.7.0"
 
-  bucket_prefix = "${substr(var.cluster_name,0,24)}-vpc-flow-log"
+  bucket_prefix = "${substr(var.cluster_name, 0, 24)}-vpc-flow-log"
   force_destroy = var.flow_logs_bucket_force_destroy
 
   tags = merge(
@@ -123,7 +123,7 @@ module "vpc_flow_logs_bucket" {
 
   intelligent_tiering = {
     general = {
-      status  = "Enabled"
+      status = "Enabled"
       tiering = {
         ARCHIVE_ACCESS = {
           days = 90
