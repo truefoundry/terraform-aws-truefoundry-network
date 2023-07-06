@@ -1,7 +1,7 @@
 module "aws-vpc-module" {
   count   = var.shim == true ? 0 : 1
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.19.0"
+  version = "5.0.0"
 
   name = local.vpc_name
   cidr = var.vpc_cidr
@@ -10,11 +10,15 @@ module "aws-vpc-module" {
   private_subnets = var.private_subnets_cidrs
   public_subnets  = var.public_subnets_cidrs
 
-  enable_nat_gateway     = var.enable_nat_gateway
-  single_nat_gateway     = var.single_nat_gateway
-  one_nat_gateway_per_az = var.one_nat_gateway_per_az
-  enable_dns_hostnames   = true
-  enable_dns_support     = true
+  enable_nat_gateway            = var.enable_nat_gateway
+  single_nat_gateway            = var.single_nat_gateway
+  one_nat_gateway_per_az        = var.one_nat_gateway_per_az
+  enable_dns_hostnames          = true
+  enable_dns_support            = true
+  map_public_ip_on_launch       = true
+  manage_default_security_group = false
+  manage_default_route_table    = false
+  manage_default_network_acl    = false
 
 
   enable_flow_log           = var.flow_logs_enable
