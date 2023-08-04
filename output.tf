@@ -16,3 +16,11 @@ output "private_subnets_id" {
 output "public_subnets_id" {
   value = var.shim == true ? var.public_subnets_ids : module.aws-vpc-module[0].public_subnets
 }
+
+output "private_subnets_cidrs" {
+  value = var.shim ? data.aws_subnet.private_subnets[*].cidr_block : var.private_subnets_cidrs
+}
+
+output "public_subnets_cidrs" {
+  value = var.shim ? data.aws_subnet.public_subnets[*].cidr_block : var.public_subnets_cidrs
+}
