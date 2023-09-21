@@ -50,11 +50,6 @@ variable "azs" {
   type        = list(string)
 }
 
-variable "environment" {
-  description = "AWS VPC Environment"
-  type        = string
-}
-
 variable "cluster_name" {
   description = "AWS EKS cluster name needed for Shared cluster"
   type        = string
@@ -63,16 +58,6 @@ variable "cluster_name" {
 
 variable "aws_region" {
   description = "VPC region"
-  type        = string
-}
-
-variable "account_name" {
-  description = "AWS account name"
-  type        = string
-}
-
-variable "aws_account_id" {
-  description = "AWS account id"
   type        = string
 }
 

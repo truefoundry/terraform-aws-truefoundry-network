@@ -79,11 +79,12 @@ data "aws_iam_policy_document" "flow_logs_bucket_policy" {
 }
 
 module "vpc_flow_logs_bucket" {
-  count   = var.flow_logs_enable == true ? 1 : 0
+  count   = var.flow_logs_enable ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.7.0"
 
-  bucket_prefix = "${substr(var.cluster_name, 0, 24)}-vpc-flow-log"
+  bucket        = var.flow_logs_bucket_enable_override ? var.flow_logs_bucket_override_name : null
+  bucket_prefix = var.flow_logs_bucket_enable_override ? null : "${substr(var.cluster_name, 0, 24)}-vpc-flow-log"
   force_destroy = var.flow_logs_bucket_force_destroy
 
   tags = merge(
