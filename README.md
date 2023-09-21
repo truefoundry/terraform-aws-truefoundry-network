@@ -4,13 +4,16 @@ Truefoundry AWS Network Module
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.17.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.17.0 |
 
 ## Modules
 
@@ -23,22 +26,19 @@ No requirements.
 
 | Name | Type |
 |------|------|
-| [aws_vpc_endpoint.s3](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
-| [aws_iam_policy_document.flow_logs_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
-| [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
+| [aws_vpc_endpoint.s3](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/resources/vpc_endpoint) | resource |
+| [aws_iam_policy_document.flow_logs_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/subnet) | data source |
+| [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/subnet) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_account_name"></a> [account\_name](#input\_account\_name) | AWS account name | `string` | n/a | yes |
-| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account id | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | VPC region | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | AWS VPC Environment | `string` | n/a | yes |
 | <a name="input_flow_logs_bucket_enable_override"></a> [flow\_logs\_bucket\_enable\_override](#input\_flow\_logs\_bucket\_enable\_override) | Enable override for s3 bucket name. You must pass flow\_logs\_bucket\_override\_name | `bool` | `false` | no |
 | <a name="input_flow_logs_bucket_encryption_algorithm"></a> [flow\_logs\_bucket\_encryption\_algorithm](#input\_flow\_logs\_bucket\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_flow_logs_bucket_encryption_key_arn"></a> [flow\_logs\_bucket\_encryption\_key\_arn](#input\_flow\_logs\_bucket\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
