@@ -6,15 +6,15 @@ output "availability_zones" {
 }
 
 output "vpc_id" {
-  value = var.shim == true ? var.vpc_id : module.aws-vpc-module[0].vpc_id
+  value = var.shim ? var.vpc_id : module.aws-vpc-module[0].vpc_id
 }
 
 output "private_subnets_id" {
-  value = var.shim == true ? var.private_subnets_ids : module.aws-vpc-module[0].private_subnets
+  value = var.shim ? var.private_subnets_ids : module.aws-vpc-module[0].private_subnets
 }
 
 output "public_subnets_id" {
-  value = var.shim == true ? var.public_subnets_ids : module.aws-vpc-module[0].public_subnets
+  value = var.shim ? var.public_subnets_ids : module.aws-vpc-module[0].public_subnets
 }
 
 output "private_subnets_cidrs" {

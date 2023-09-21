@@ -1,14 +1,11 @@
 ##################################################################################
-## Variables
+## SHIM
 ##################################################################################
-
-### Shim
 variable "shim" {
   description = "If true will not create the network and forward the input values to the same outputs."
   type        = bool
   default     = false
 }
-
 variable "vpc_id" {
   description = "SHIM: VPC Id"
   type        = string
@@ -25,63 +22,25 @@ variable "private_subnets_ids" {
   default     = []
 }
 
+##################################################################################
+## NON-SHIM
+##################################################################################
 
-### Non shim
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC."
   type        = string
   default     = ""
 }
-
 variable "private_subnets_cidrs" {
   description = "Assigns IPv4 private subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list"
   type        = list(string)
   default     = []
 }
-
 variable "public_subnets_cidrs" {
   description = "Assigns IPv4 public subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list"
   type        = list(string)
   default     = []
 }
-
-variable "azs" {
-  description = "Availability Zones"
-  type        = list(string)
-}
-
-variable "environment" {
-  description = "AWS VPC Environment"
-  type        = string
-}
-
-variable "cluster_name" {
-  description = "AWS EKS cluster name needed for Shared cluster"
-  type        = string
-  default     = ""
-}
-
-variable "aws_region" {
-  description = "VPC region"
-  type        = string
-}
-
-variable "account_name" {
-  description = "AWS account name"
-  type        = string
-}
-
-variable "aws_account_id" {
-  description = "AWS account id"
-  type        = string
-}
-
-variable "tags" {
-  type        = map(string)
-  default     = {}
-  description = "AWS Tags common to all the resources created"
-}
-
 variable "public_subnet_extra_tags" {
   type        = map(string)
   default     = {}
@@ -93,7 +52,6 @@ variable "private_subnet_extra_tags" {
   default     = {}
   description = "Extra tags for VPC private subnets"
 }
-
 variable "enable_nat_gateway" {
   description = "Enable NAT Gateway - This is necessary for the cluster to work"
   default     = true
@@ -109,6 +67,40 @@ variable "one_nat_gateway_per_az" {
   default     = false
   type        = bool
 }
+
+##################################################################################
+## Generic
+##################################################################################
+
+variable "aws_account_id" {
+  description = "AWS account ID"
+  type        = string
+}
+variable "cluster_name" {
+  description = "AWS EKS cluster name needed for Shared cluster"
+  type        = string
+  default     = ""
+}
+
+variable "aws_region" {
+  description = "VPC region"
+  type        = string
+}
+
+variable "azs" {
+  description = "Availability Zones"
+  type        = list(string)
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "AWS Tags common to all the resources created"
+}
+
+##################################################################################
+## Flow logs
+##################################################################################
 
 variable "flow_logs_enable" {
   default     = false
@@ -126,7 +118,6 @@ variable "flow_logs_bucket_force_destroy" {
   type        = bool
   default     = false
 }
-
 variable "flow_logs_bucket_encryption_key_arn" {
   description = "ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm."
   type        = string
