@@ -1,5 +1,5 @@
 data "aws_iam_policy_document" "flow_logs_bucket_policy" {
-  count   = var.flow_logs_enable ? 1 : 0
+  count = var.flow_logs_enable ? 1 : 0
   statement {
     sid    = "SecureTransportOnly"
     effect = "Deny"
