@@ -1,4 +1,5 @@
 data "aws_iam_policy_document" "flow_logs_bucket_policy" {
+  count   = var.flow_logs_enable ? 1 : 0
   statement {
     sid    = "SecureTransportOnly"
     effect = "Deny"
@@ -95,7 +96,7 @@ module "vpc_flow_logs_bucket" {
   )
 
   # Bucket policies
-  policy                                = data.aws_iam_policy_document.flow_logs_bucket_policy.json
+  policy                                = data.aws_iam_policy_document.flow_logs_bucket_policy[0].json
   attach_policy                         = false
   attach_deny_insecure_transport_policy = false
   attach_require_latest_tls_policy      = false
