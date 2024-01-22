@@ -63,10 +63,11 @@ Truefoundry AWS Network Module
 
 | Name | Description |
 |------|-------------|
-| <a name="output_availability_zones"></a> [availability\_zones](#output\_availability\_zones) | ################################################################################## # VPC Output ################################################################################## |
-| <a name="output_private_subnets_cidrs"></a> [private\_subnets\_cidrs](#output\_private\_subnets\_cidrs) | n/a |
-| <a name="output_private_subnets_id"></a> [private\_subnets\_id](#output\_private\_subnets\_id) | n/a |
-| <a name="output_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#output\_public\_subnets\_cidrs) | n/a |
-| <a name="output_public_subnets_id"></a> [public\_subnets\_id](#output\_public\_subnets\_id) | n/a |
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | n/a |
+| <a name="output_availability_zones"></a> [availability\_zones](#output\_availability\_zones) | List of availability zones for VPC |
+| <a name="output_private_subnets_cidrs"></a> [private\_subnets\_cidrs](#output\_private\_subnets\_cidrs) | List of private subnet CIDRs in the VPC |
+| <a name="output_private_subnets_id"></a> [private\_subnets\_id](#output\_private\_subnets\_id) | List of private subnet IDs in the VPC |
+| <a name="output_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#output\_public\_subnets\_cidrs) | List of public subnet CIDRs in the VPC |
+| <a name="output_public_subnets_id"></a> [public\_subnets\_id](#output\_public\_subnets\_id) | List of public subnet IDs in the VPC |
+| <a name="output_region"></a> [region](#output\_region) | AWS region of VPC |
+| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID of the network |
 <!-- END_TF_DOCS -->
