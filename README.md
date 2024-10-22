@@ -7,13 +7,13 @@ Truefoundry AWS Network Module
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.17.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.57.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.17.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.57.0 |
 
 ## Modules
 
@@ -26,10 +26,10 @@ Truefoundry AWS Network Module
 
 | Name | Type |
 |------|------|
-| [aws_vpc_endpoint.s3](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/resources/vpc_endpoint) | resource |
-| [aws_iam_policy_document.flow_logs_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/subnet) | data source |
-| [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/5.17.0/docs/data-sources/subnet) | data source |
+| [aws_vpc_endpoint.s3](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
+| [aws_iam_policy_document.flow_logs_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
+| [aws_subnet.public_subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
 
 ## Inputs
 
