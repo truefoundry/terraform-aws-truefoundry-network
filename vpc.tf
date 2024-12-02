@@ -1,5 +1,5 @@
 module "aws-vpc-module" {
-  count   = var.shim ? 0 : 1
+  count   = var.shim == true ? 0 : 1
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0.0"
 
@@ -67,20 +67,4 @@ data "aws_subnet" "public_subnets" {
   count = var.shim ? length(var.public_subnets_ids) : 0
 
   id = element(var.public_subnets_ids, count.index)
-}
-
-resource "aws_ec2_tag" "private_subnet_tags" {
-  count = var.shim ? length(var.private_subnets_ids) * length(local.private_subnet_tags_list) : 0
-
-  resource_id = var.private_subnets_ids[floor(count.index / length(local.private_subnet_tags_list))]
-  key         = local.private_subnet_tags_list[count.index % length(local.private_subnet_tags_list)].key
-  value       = local.private_subnet_tags_list[count.index % length(local.private_subnet_tags_list)].value
-}
-
-resource "aws_ec2_tag" "public_subnet_tags" {
-  count = var.shim ? length(var.public_subnets_ids) * length(local.public_subnet_tags_list) : 0
-
-  resource_id = var.public_subnets_ids[floor(count.index / length(local.public_subnet_tags_list))]
-  key         = local.public_subnet_tags_list[count.index % length(local.public_subnet_tags_list)].key
-  value       = local.public_subnet_tags_list[count.index % length(local.public_subnet_tags_list)].value
 }
