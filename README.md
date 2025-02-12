@@ -19,7 +19,7 @@ Truefoundry AWS Network Module
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-vpc-module"></a> [aws-vpc-module](#module\_aws-vpc-module) | terraform-aws-modules/vpc/aws | 5.0.0 |
+| <a name="module_aws-vpc-module"></a> [aws-vpc-module](#module\_aws-vpc-module) | terraform-aws-modules/vpc/aws | 5.19.0 |
 | <a name="module_vpc_flow_logs_bucket"></a> [vpc\_flow\_logs\_bucket](#module\_vpc\_flow\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.7.0 |
 
 ## Resources
