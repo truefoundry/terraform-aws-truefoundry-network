@@ -34,3 +34,39 @@ output "availability_zones" {
   description = "List of availability zones for VPC"
   value       = var.azs
 }
+
+output "validate_private_subnet_tags" {
+  description = "Validates that all private subnets have the required Kubernetes tags for proper ELB and cluster integration"
+  value       = local.private_subnets_missing_tags
+  precondition {
+    condition     = length(local.private_subnets_missing_tags) == 0
+    error_message = <<EOT
+Some private subnets are missing required tags: ${jsonencode(local.private_subnets_missing_tags)}
+
+Required tags for private subnets:
+- "kubernetes.io/cluster/${var.cluster_name}": "shared"
+- "subnet": "private"
+- "kubernetes.io/role/internal-elb": "1"
+
+See: https://docs.truefoundry.com/docs/requirements#vpc-tags
+EOT
+  }
+}
+
+output "validate_public_subnet_tags" {
+  description = "Validates that all public subnets have the required Kubernetes tags for proper ELB and cluster integration"
+  value       = local.public_subnets_missing_tags
+  precondition {
+    condition     = length(local.public_subnets_missing_tags) == 0
+    error_message = <<EOT
+Some public subnets are missing required tags: ${jsonencode(local.public_subnets_missing_tags)}
+
+Required tags for public subnets:
+- "kubernetes.io/cluster/${var.cluster_name}": "shared"
+- "subnet": "public"
+- "kubernetes.io/role/elb": "1"
+
+See: https://docs.truefoundry.com/docs/requirements#vpc-tags
+EOT
+  }
+}

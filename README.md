@@ -1,4 +1,5 @@
 # terraform-aws-truefoundry-network
+
 Truefoundry AWS Network Module
 
 <!-- BEGIN_TF_DOCS -->
@@ -35,6 +36,7 @@ Truefoundry AWS Network Module
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input__validate_subnet_tags"></a> [\_validate\_subnet\_tags](#input\_\_validate\_subnet\_tags) | Boolean to validate all subnets have the required Kubernetes tags for proper ELB and cluster integration. | `bool` | `true` | no |
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account ID | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | VPC region | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
@@ -69,5 +71,29 @@ Truefoundry AWS Network Module
 | <a name="output_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#output\_public\_subnets\_cidrs) | List of public subnet CIDRs in the VPC |
 | <a name="output_public_subnets_id"></a> [public\_subnets\_id](#output\_public\_subnets\_id) | List of public subnet IDs in the VPC |
 | <a name="output_region"></a> [region](#output\_region) | AWS region of VPC |
+| <a name="output_validate_private_subnet_tags"></a> [validate\_private\_subnet\_tags](#output\_validate\_private\_subnet\_tags) | Validates that all private subnets have the required Kubernetes tags for proper ELB and cluster integration |
+| <a name="output_validate_public_subnet_tags"></a> [validate\_public\_subnet\_tags](#output\_validate\_public\_subnet\_tags) | Validates that all public subnets have the required Kubernetes tags for proper ELB and cluster integration |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID of the network |
 <!-- END_TF_DOCS -->
+## Subnet Tag Validation (Shim Mode)
+
+When using the module in shim mode (with existing subnets), the following outputs are available:
+
+- `private_subnets_tags`: List of tag maps for each private subnet
+- `public_subnets_tags`: List of tag maps for each public subnet
+
+You should check these outputs to ensure your subnets have the required tags:
+
+**Private Subnets:**
+
+- `kubernetes.io/cluster/$CLUSTER_NAME`: "shared"
+- `subnet`: "private"
+- `kubernetes.io/role/internal-elb`: "1"
+
+**Public Subnets:**
+
+- `kubernetes.io/cluster/$CLUSTER_NAME`: "shared"
+- `subnet`: "public"
+- `kubernetes.io/role/elb`: "1"
+
+If any subnet is missing these tags, you must add them manually in the AWS console or via CLI.
