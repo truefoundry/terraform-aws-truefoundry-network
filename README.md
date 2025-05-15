@@ -1,4 +1,5 @@
 # terraform-aws-truefoundry-network
+
 Truefoundry AWS Network Module
 
 <!-- BEGIN_TF_DOCS -->
@@ -71,3 +72,25 @@ Truefoundry AWS Network Module
 | <a name="output_region"></a> [region](#output\_region) | AWS region of VPC |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | VPC ID of the network |
 <!-- END_TF_DOCS -->
+## Subnet Tag Validation (Shim Mode)
+
+When using the module in shim mode (with existing subnets), the following outputs are available:
+
+- `private_subnets_tags`: List of tag maps for each private subnet
+- `public_subnets_tags`: List of tag maps for each public subnet
+
+You should check these outputs to ensure your subnets have the required tags:
+
+**Private Subnets:**
+
+- `kubernetes.io/cluster/$CLUSTER_NAME`: "shared"
+- `subnet`: "private"
+- `kubernetes.io/role/internal-elb`: "1"
+
+**Public Subnets:**
+
+- `kubernetes.io/cluster/$CLUSTER_NAME`: "shared"
+- `subnet`: "public"
+- `kubernetes.io/role/elb`: "1"
+
+If any subnet is missing these tags, you must add them manually in the AWS console or via CLI.

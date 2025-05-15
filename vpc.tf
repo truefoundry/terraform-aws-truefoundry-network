@@ -56,3 +56,7 @@ resource "aws_vpc_endpoint" "s3" {
   service_name = "com.amazonaws.${var.aws_region}.s3"
   tags         = local.tags
 }
+
+variable "_validate_subnet_tags" {
+  default = true
+}
