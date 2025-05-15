@@ -58,5 +58,7 @@ resource "aws_vpc_endpoint" "s3" {
 }
 
 variable "_validate_subnet_tags" {
-  default = true
+  description = "Boolean to validate all subnets have the required Kubernetes tags for proper ELB and cluster integration."
+  type        = bool
+  default     = true
 }

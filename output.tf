@@ -36,7 +36,8 @@ output "availability_zones" {
 }
 
 output "validate_private_subnet_tags" {
-  value = local.private_subnets_missing_tags
+  description = "Validates that all private subnets have the required Kubernetes tags for proper ELB and cluster integration"
+  value       = local.private_subnets_missing_tags
   precondition {
     condition     = length(local.private_subnets_missing_tags) == 0
     error_message = <<EOT
@@ -53,7 +54,8 @@ EOT
 }
 
 output "validate_public_subnet_tags" {
-  value = local.public_subnets_missing_tags
+  description = "Validates that all public subnets have the required Kubernetes tags for proper ELB and cluster integration"
+  value       = local.public_subnets_missing_tags
   precondition {
     condition     = length(local.public_subnets_missing_tags) == 0
     error_message = <<EOT
