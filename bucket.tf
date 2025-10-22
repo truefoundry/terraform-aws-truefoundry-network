@@ -82,7 +82,7 @@ data "aws_iam_policy_document" "flow_logs_bucket_policy" {
 module "vpc_flow_logs_bucket" {
   count   = var.flow_logs_enable ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.7.0"
+  version = "3.15.0"
 
   bucket        = var.flow_logs_bucket_enable_override ? var.flow_logs_bucket_override_name : null
   bucket_prefix = var.flow_logs_bucket_enable_override ? null : "${substr(var.cluster_name, 0, 24)}-vpc-flow-log"
@@ -90,24 +90,23 @@ module "vpc_flow_logs_bucket" {
 
   tags = merge(
     {
-      Name = "${var.cluster_name}-vpc-flow-logs"
+      Name = var.flow_logs_bucket_enable_override ? var.flow_logs_bucket_override_name : "${var.cluster_name}-vpc-flow-log"
     },
     local.tags
   )
 
   # Bucket policies
   policy                                = data.aws_iam_policy_document.flow_logs_bucket_policy[0].json
-  attach_policy                         = false
-  attach_deny_insecure_transport_policy = false
-  attach_require_latest_tls_policy      = false
+  attach_policy                         = var.flow_logs_bucket_attach_policy
+  attach_deny_insecure_transport_policy = var.flow_logs_bucket_attach_deny_insecure_transport_policy
+  attach_require_latest_tls_policy      = var.flow_logs_bucket_attach_require_latest_tls_policy
+  attach_public_policy                  = var.flow_logs_bucket_attach_public_policy
 
   # S3 bucket-level Public Access Block configuration
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-
-  acl = "private" # "acl" conflicts with "grant" and "owner"
+  block_public_acls       = var.flow_logs_bucket_block_public_acls
+  block_public_policy     = var.flow_logs_bucket_block_public_policy
+  ignore_public_acls      = var.flow_logs_bucket_ignore_public_acls
+  restrict_public_buckets = var.flow_logs_bucket_restrict_public_buckets
 
   versioning = {
     status     = false

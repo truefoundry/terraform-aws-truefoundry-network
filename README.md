@@ -21,7 +21,7 @@ Truefoundry AWS Network Module
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aws-vpc-module"></a> [aws-vpc-module](#module\_aws-vpc-module) | terraform-aws-modules/vpc/aws | 5.19.0 |
-| <a name="module_vpc_flow_logs_bucket"></a> [vpc\_flow\_logs\_bucket](#module\_vpc\_flow\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.7.0 |
+| <a name="module_vpc_flow_logs_bucket"></a> [vpc\_flow\_logs\_bucket](#module\_vpc\_flow\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.15.0 |
 
 ## Resources
 
@@ -36,17 +36,24 @@ Truefoundry AWS Network Module
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input__validate_subnet_tags"></a> [\_validate\_subnet\_tags](#input\_\_validate\_subnet\_tags) | Boolean to validate all subnets have the required Kubernetes tags for proper ELB and cluster integration. | `bool` | `true` | no |
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account ID | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | VPC region | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_attach_deny_insecure_transport_policy"></a> [flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy](#input\_flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy) | Flag to attach deny insecure transport policy to the bucket | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_attach_policy"></a> [flow\_logs\_bucket\_attach\_policy](#input\_flow\_logs\_bucket\_attach\_policy) | Flag to attach policy to the bucket | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_attach_public_policy"></a> [flow\_logs\_bucket\_attach\_public\_policy](#input\_flow\_logs\_bucket\_attach\_public\_policy) | Flag to attach public policy to the bucket | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_attach_require_latest_tls_policy"></a> [flow\_logs\_bucket\_attach\_require\_latest\_tls\_policy](#input\_flow\_logs\_bucket\_attach\_require\_latest\_tls\_policy) | Flag to attach require latest TLS policy to the bucket | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_block_public_acls"></a> [flow\_logs\_bucket\_block\_public\_acls](#input\_flow\_logs\_bucket\_block\_public\_acls) | Flag to block public ACLs on the bucket | `bool` | `true` | no |
+| <a name="input_flow_logs_bucket_block_public_policy"></a> [flow\_logs\_bucket\_block\_public\_policy](#input\_flow\_logs\_bucket\_block\_public\_policy) | Flag to block public policy on the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_bucket_enable_override"></a> [flow\_logs\_bucket\_enable\_override](#input\_flow\_logs\_bucket\_enable\_override) | Enable override for s3 bucket name. You must pass flow\_logs\_bucket\_override\_name | `bool` | `false` | no |
 | <a name="input_flow_logs_bucket_encryption_algorithm"></a> [flow\_logs\_bucket\_encryption\_algorithm](#input\_flow\_logs\_bucket\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_flow_logs_bucket_encryption_key_arn"></a> [flow\_logs\_bucket\_encryption\_key\_arn](#input\_flow\_logs\_bucket\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
 | <a name="input_flow_logs_bucket_force_destroy"></a> [flow\_logs\_bucket\_force\_destroy](#input\_flow\_logs\_bucket\_force\_destroy) | Force destroy for the default bucket. | `bool` | `false` | no |
+| <a name="input_flow_logs_bucket_ignore_public_acls"></a> [flow\_logs\_bucket\_ignore\_public\_acls](#input\_flow\_logs\_bucket\_ignore\_public\_acls) | Flag to ignore public ACLs on the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_bucket_override_name"></a> [flow\_logs\_bucket\_override\_name](#input\_flow\_logs\_bucket\_override\_name) | Override name for s3 bucket. flow\_logs\_bucket\_enable\_override must be set true | `string` | `""` | no |
+| <a name="input_flow_logs_bucket_restrict_public_buckets"></a> [flow\_logs\_bucket\_restrict\_public\_buckets](#input\_flow\_logs\_bucket\_restrict\_public\_buckets) | Flag to restrict public buckets on the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_enable"></a> [flow\_logs\_enable](#input\_flow\_logs\_enable) | Enable VPC flow logs | `bool` | `false` | no |
 | <a name="input_one_nat_gateway_per_az"></a> [one\_nat\_gateway\_per\_az](#input\_one\_nat\_gateway\_per\_az) | One NAT Gateway for each AZ. | `bool` | `false` | no |
 | <a name="input_private_subnet_extra_tags"></a> [private\_subnet\_extra\_tags](#input\_private\_subnet\_extra\_tags) | Extra tags for VPC private subnets | `map(string)` | `{}` | no |
