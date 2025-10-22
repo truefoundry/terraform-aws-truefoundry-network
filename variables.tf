@@ -108,6 +108,53 @@ variable "flow_logs_enable" {
   type        = bool
 }
 
+variable "flow_logs_bucket_attach_policy" {
+  description = "Flag to attach policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_attach_deny_insecure_transport_policy" {
+  description = "Flag to attach deny insecure transport policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_attach_require_latest_tls_policy" {
+  description = "Flag to attach require latest TLS policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_attach_public_policy" {
+  description = "Flag to attach public policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_block_public_acls" {
+  description = "Flag to block public ACLs on the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_block_public_policy" {
+  description = "Flag to block public policy on the bucket"
+  type        = bool
+  default     = true
+}
+variable "flow_logs_bucket_ignore_public_acls" {
+  description = "Flag to ignore public ACLs on the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "flow_logs_bucket_restrict_public_buckets" {
+  description = "Flag to restrict public buckets on the bucket"
+  type        = bool
+  default     = true
+}
+
 variable "flow_logs_bucket_encryption_algorithm" {
   description = "Algorithm used for encrypting the default bucket."
   type        = string
