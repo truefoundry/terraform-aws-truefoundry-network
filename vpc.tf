@@ -19,7 +19,8 @@ module "aws-vpc-module" {
   manage_default_security_group = false
   manage_default_route_table    = false
   manage_default_network_acl    = false
-
+  reuse_nat_ips                 = var.use_external_elastic_ips
+  external_nat_ip_ids           = var.external_nat_ip_ids
 
   enable_flow_log           = var.flow_logs_enable
   flow_log_destination_type = var.flow_logs_enable ? "s3" : null

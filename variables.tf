@@ -52,6 +52,18 @@ variable "private_subnet_extra_tags" {
   default     = {}
   description = "Extra tags for VPC private subnets"
 }
+
+variable "use_external_elastic_ips" {
+  description = "Use external elastic IPs"
+  type        = bool
+  default     = false
+}
+variable "external_nat_ip_ids" {
+  description = "External NAT IPs IDs"
+  type        = list(string)
+  default     = []
+}
+
 variable "enable_nat_gateway" {
   description = "Enable NAT Gateway - This is necessary for the cluster to work"
   default     = true
