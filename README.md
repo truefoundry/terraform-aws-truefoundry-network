@@ -41,6 +41,7 @@ Truefoundry AWS Network Module
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
+| <a name="input_external_nat_ip_ids"></a> [external\_nat\_ip\_ids](#input\_external\_nat\_ip\_ids) | External NAT IPs IDs | `list(string)` | `[]` | no |
 | <a name="input_flow_logs_bucket_attach_deny_insecure_transport_policy"></a> [flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy](#input\_flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy) | Flag to attach deny insecure transport policy to the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_bucket_attach_policy"></a> [flow\_logs\_bucket\_attach\_policy](#input\_flow\_logs\_bucket\_attach\_policy) | Flag to attach policy to the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_bucket_attach_public_policy"></a> [flow\_logs\_bucket\_attach\_public\_policy](#input\_flow\_logs\_bucket\_attach\_public\_policy) | Flag to attach public policy to the bucket | `bool` | `true` | no |
@@ -65,6 +66,7 @@ Truefoundry AWS Network Module
 | <a name="input_shim"></a> [shim](#input\_shim) | If true will not create the network and forward the input values to the same outputs. | `bool` | `false` | no |
 | <a name="input_single_nat_gateway"></a> [single\_nat\_gateway](#input\_single\_nat\_gateway) | Single NAT Gateway, shared for all AZ and subnets | `bool` | `true` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | AWS Tags common to all the resources created | `map(string)` | `{}` | no |
+| <a name="input_use_external_elastic_ips"></a> [use\_external\_elastic\_ips](#input\_use\_external\_elastic\_ips) | Use external elastic IPs | `bool` | `false` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | The CIDR block for the VPC. | `string` | `""` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | SHIM: VPC Id | `string` | `""` | no |
 
