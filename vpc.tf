@@ -1,7 +1,7 @@
 module "aws-vpc-module" {
   count   = var.shim == true ? 0 : 1
   source  = "terraform-aws-modules/vpc/aws"
-  version = "5.19.0"
+  version = "6.5.1"
 
   name = local.vpc_name
   cidr = var.vpc_cidr
