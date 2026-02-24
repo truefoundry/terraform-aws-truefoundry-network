@@ -8,20 +8,20 @@ Truefoundry AWS Network Module
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.57 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 6.33 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.57 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 6.33 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_aws-vpc-module"></a> [aws-vpc-module](#module\_aws-vpc-module) | terraform-aws-modules/vpc/aws | 5.19.0 |
-| <a name="module_vpc_flow_logs_bucket"></a> [vpc\_flow\_logs\_bucket](#module\_vpc\_flow\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.15.0 |
+| <a name="module_aws-vpc-module"></a> [aws-vpc-module](#module\_aws-vpc-module) | terraform-aws-modules/vpc/aws | 6.5.1 |
+| <a name="module_vpc_flow_logs_bucket"></a> [vpc\_flow\_logs\_bucket](#module\_vpc\_flow\_logs\_bucket) | terraform-aws-modules/s3-bucket/aws | 5.9.1 |
 
 ## Resources
 
