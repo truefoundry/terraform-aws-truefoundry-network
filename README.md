@@ -27,6 +27,8 @@ Truefoundry AWS Network Module
 
 | Name | Type |
 |------|------|
+| [aws_route_table_association.custom_networking_eks_pods](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
+| [aws_subnet.custom_networking_eks_pods](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
 | [aws_vpc_endpoint.s3](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
 | [aws_iam_policy_document.flow_logs_bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_subnet.private_subnets](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
@@ -40,6 +42,7 @@ Truefoundry AWS Network Module
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | VPC region | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
+| <a name="input_eks_pod_secondary_subnet_cidrs"></a> [eks\_pod\_secondary\_subnet\_cidrs](#input\_eks\_pod\_secondary\_subnet\_cidrs) | List of CIDR blocks for EKS pod subnets (one per AZ) from the secondary CIDR | `list(string)` | `[]` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
 | <a name="input_external_nat_ip_ids"></a> [external\_nat\_ip\_ids](#input\_external\_nat\_ip\_ids) | External NAT IPs IDs | `list(string)` | `[]` | no |
 | <a name="input_flow_logs_bucket_attach_deny_insecure_transport_policy"></a> [flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy](#input\_flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy) | Flag to attach deny insecure transport policy to the bucket | `bool` | `true` | no |
@@ -57,12 +60,14 @@ Truefoundry AWS Network Module
 | <a name="input_flow_logs_bucket_restrict_public_buckets"></a> [flow\_logs\_bucket\_restrict\_public\_buckets](#input\_flow\_logs\_bucket\_restrict\_public\_buckets) | Flag to restrict public buckets on the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_enable"></a> [flow\_logs\_enable](#input\_flow\_logs\_enable) | Enable VPC flow logs | `bool` | `false` | no |
 | <a name="input_one_nat_gateway_per_az"></a> [one\_nat\_gateway\_per\_az](#input\_one\_nat\_gateway\_per\_az) | One NAT Gateway for each AZ. | `bool` | `false` | no |
+| <a name="input_pod_subnets_ids"></a> [pod\_subnets\_ids](#input\_pod\_subnets\_ids) | SHIM: Pre-existing pod subnet IDs for EKS custom networking | `list(string)` | `[]` | no |
 | <a name="input_private_subnet_extra_tags"></a> [private\_subnet\_extra\_tags](#input\_private\_subnet\_extra\_tags) | Extra tags for VPC private subnets | `map(string)` | `{}` | no |
 | <a name="input_private_subnets_cidrs"></a> [private\_subnets\_cidrs](#input\_private\_subnets\_cidrs) | Assigns IPv4 private subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list | `list(string)` | `[]` | no |
 | <a name="input_private_subnets_ids"></a> [private\_subnets\_ids](#input\_private\_subnets\_ids) | SHIM: Private Subnets IDs | `list(string)` | `[]` | no |
 | <a name="input_public_subnet_extra_tags"></a> [public\_subnet\_extra\_tags](#input\_public\_subnet\_extra\_tags) | Extra tags for VPC public subnets | `map(string)` | `{}` | no |
 | <a name="input_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#input\_public\_subnets\_cidrs) | Assigns IPv4 public subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list | `list(string)` | `[]` | no |
 | <a name="input_public_subnets_ids"></a> [public\_subnets\_ids](#input\_public\_subnets\_ids) | SHIM: Public Subnets IDs | `list(string)` | `[]` | no |
+| <a name="input_secondary_cidr_block"></a> [secondary\_cidr\_block](#input\_secondary\_cidr\_block) | Secondary CIDR blocks to attach to the VPC | `list(string)` | `[]` | no |
 | <a name="input_shim"></a> [shim](#input\_shim) | If true will not create the network and forward the input values to the same outputs. | `bool` | `false` | no |
 | <a name="input_single_nat_gateway"></a> [single\_nat\_gateway](#input\_single\_nat\_gateway) | Single NAT Gateway, shared for all AZ and subnets | `bool` | `true` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | AWS Tags common to all the resources created | `map(string)` | `{}` | no |
@@ -75,6 +80,7 @@ Truefoundry AWS Network Module
 | Name | Description |
 |------|-------------|
 | <a name="output_availability_zones"></a> [availability\_zones](#output\_availability\_zones) | List of availability zones for VPC |
+| <a name="output_eks_pod_subnet_ids"></a> [eks\_pod\_subnet\_ids](#output\_eks\_pod\_subnet\_ids) | List of pod subnet IDs for EKS custom networking (from secondary CIDR) |
 | <a name="output_private_subnets_cidrs"></a> [private\_subnets\_cidrs](#output\_private\_subnets\_cidrs) | List of private subnet CIDRs in the VPC |
 | <a name="output_private_subnets_id"></a> [private\_subnets\_id](#output\_private\_subnets\_id) | List of private subnet IDs in the VPC |
 | <a name="output_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#output\_public\_subnets\_cidrs) | List of public subnet CIDRs in the VPC |
