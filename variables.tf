@@ -21,6 +21,11 @@ variable "private_subnets_ids" {
   type        = list(string)
   default     = []
 }
+variable "pod_subnets_ids" {
+  description = "SHIM: Pre-existing pod subnet IDs for EKS custom networking"
+  type        = list(string)
+  default     = []
+}
 
 ##################################################################################
 ## NON-SHIM
@@ -78,6 +83,22 @@ variable "one_nat_gateway_per_az" {
   description = "One NAT Gateway for each AZ."
   default     = false
   type        = bool
+}
+
+##################################################################################
+## Pod Networking (EKS Custom CNI)
+##################################################################################
+
+variable "secondary_cidr_block" {
+  description = "Secondary CIDR blocks to attach to the VPC"
+  type        = list(string)
+  default     = []
+}
+
+variable "eks_pod_secondary_subnet_cidrs" {
+  description = "List of CIDR blocks for EKS pod subnets (one per AZ) from the secondary CIDR"
+  type        = list(string)
+  default     = []
 }
 
 ##################################################################################
