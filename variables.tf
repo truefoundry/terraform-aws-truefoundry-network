@@ -46,6 +46,11 @@ variable "public_subnets_cidrs" {
   type        = list(string)
   default     = []
 }
+variable "secondary_cidr_blocks" {
+  description = "Secondary CIDR blocks to attach to the VPC"
+  type        = list(string)
+  default     = []
+}
 variable "public_subnet_extra_tags" {
   type        = map(string)
   default     = {}
@@ -95,11 +100,6 @@ variable "enable_custom_networking" {
   default     = false
 }
 
-variable "secondary_cidr_blocks" {
-  description = "Secondary CIDR blocks to attach to the VPC"
-  type        = list(string)
-  default     = []
-}
 
 variable "custom_networking_subnet_cidrs" {
   description = "List of CIDR blocks for EKS custom networking subnets (one per AZ) from the secondary CIDR"
