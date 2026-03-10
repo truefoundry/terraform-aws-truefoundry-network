@@ -42,7 +42,9 @@ Truefoundry AWS Network Module
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | VPC region | `string` | n/a | yes |
 | <a name="input_azs"></a> [azs](#input\_azs) | Availability Zones | `list(string)` | n/a | yes |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
-| <a name="input_eks_pod_secondary_subnet_cidrs"></a> [eks\_pod\_secondary\_subnet\_cidrs](#input\_eks\_pod\_secondary\_subnet\_cidrs) | List of CIDR blocks for EKS pod subnets (one per AZ) from the secondary CIDR | `list(string)` | `[]` | no |
+| <a name="input_custom_networking_subnet_cidrs"></a> [custom\_networking\_subnet\_cidrs](#input\_custom\_networking\_subnet\_cidrs) | List of CIDR blocks for EKS custom networking subnets (one per AZ) from the secondary CIDR | `list(string)` | `[]` | no |
+| <a name="input_custom_networking_subnet_ids"></a> [custom\_networking\_subnet\_ids](#input\_custom\_networking\_subnet\_ids) | SHIM: Pre-existing pod subnet IDs for EKS custom networking | `list(string)` | `[]` | no |
+| <a name="input_enable_custom_networking"></a> [enable\_custom\_networking](#input\_enable\_custom\_networking) | Enable custom networking | `bool` | `false` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
 | <a name="input_external_nat_ip_ids"></a> [external\_nat\_ip\_ids](#input\_external\_nat\_ip\_ids) | External NAT IPs IDs | `list(string)` | `[]` | no |
 | <a name="input_flow_logs_bucket_attach_deny_insecure_transport_policy"></a> [flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy](#input\_flow\_logs\_bucket\_attach\_deny\_insecure\_transport\_policy) | Flag to attach deny insecure transport policy to the bucket | `bool` | `true` | no |
@@ -60,14 +62,13 @@ Truefoundry AWS Network Module
 | <a name="input_flow_logs_bucket_restrict_public_buckets"></a> [flow\_logs\_bucket\_restrict\_public\_buckets](#input\_flow\_logs\_bucket\_restrict\_public\_buckets) | Flag to restrict public buckets on the bucket | `bool` | `true` | no |
 | <a name="input_flow_logs_enable"></a> [flow\_logs\_enable](#input\_flow\_logs\_enable) | Enable VPC flow logs | `bool` | `false` | no |
 | <a name="input_one_nat_gateway_per_az"></a> [one\_nat\_gateway\_per\_az](#input\_one\_nat\_gateway\_per\_az) | One NAT Gateway for each AZ. | `bool` | `false` | no |
-| <a name="input_pod_subnets_ids"></a> [pod\_subnets\_ids](#input\_pod\_subnets\_ids) | SHIM: Pre-existing pod subnet IDs for EKS custom networking | `list(string)` | `[]` | no |
 | <a name="input_private_subnet_extra_tags"></a> [private\_subnet\_extra\_tags](#input\_private\_subnet\_extra\_tags) | Extra tags for VPC private subnets | `map(string)` | `{}` | no |
 | <a name="input_private_subnets_cidrs"></a> [private\_subnets\_cidrs](#input\_private\_subnets\_cidrs) | Assigns IPv4 private subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list | `list(string)` | `[]` | no |
 | <a name="input_private_subnets_ids"></a> [private\_subnets\_ids](#input\_private\_subnets\_ids) | SHIM: Private Subnets IDs | `list(string)` | `[]` | no |
 | <a name="input_public_subnet_extra_tags"></a> [public\_subnet\_extra\_tags](#input\_public\_subnet\_extra\_tags) | Extra tags for VPC public subnets | `map(string)` | `{}` | no |
 | <a name="input_public_subnets_cidrs"></a> [public\_subnets\_cidrs](#input\_public\_subnets\_cidrs) | Assigns IPv4 public subnet id based on the Amazon provided /56 prefix base 10 integer (0-256). Must be of equal length to the corresponding IPv4 subnet list | `list(string)` | `[]` | no |
 | <a name="input_public_subnets_ids"></a> [public\_subnets\_ids](#input\_public\_subnets\_ids) | SHIM: Public Subnets IDs | `list(string)` | `[]` | no |
-| <a name="input_secondary_cidr_block"></a> [secondary\_cidr\_block](#input\_secondary\_cidr\_block) | Secondary CIDR blocks to attach to the VPC | `list(string)` | `[]` | no |
+| <a name="input_secondary_cidr_blocks"></a> [secondary\_cidr\_blocks](#input\_secondary\_cidr\_blocks) | Secondary CIDR blocks to attach to the VPC | `list(string)` | `[]` | no |
 | <a name="input_shim"></a> [shim](#input\_shim) | If true will not create the network and forward the input values to the same outputs. | `bool` | `false` | no |
 | <a name="input_single_nat_gateway"></a> [single\_nat\_gateway](#input\_single\_nat\_gateway) | Single NAT Gateway, shared for all AZ and subnets | `bool` | `true` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | AWS Tags common to all the resources created | `map(string)` | `{}` | no |
