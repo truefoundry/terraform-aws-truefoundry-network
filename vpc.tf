@@ -28,7 +28,7 @@ module "aws-vpc-module" {
   flow_log_log_format       = "$${version} $${account-id} $${instance-id} $${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport} $${protocol} $${packets} $${bytes} $${start} $${end} $${action} $${log-status} $${az-id} $${pkt-srcaddr} $${pkt-dstaddr} $${pkt-src-aws-service} $${pkt-dst-aws-service} $${flow-direction} $${traffic-path}"
   vpc_flow_log_tags         = local.tags
 
-  secondary_cidr_blocks = var.secondary_cidr_blocks 
+  secondary_cidr_blocks = var.secondary_cidr_blocks
 
   public_subnet_tags = merge(
     {

@@ -105,11 +105,6 @@ variable "custom_networking_subnet_cidrs" {
   description = "List of CIDR blocks for EKS custom networking subnets (one per AZ) from the secondary CIDR"
   type        = list(string)
   default     = []
-
-  validation {
-    condition     = length(var.custom_networking_subnet_cidrs) <= length(var.azs)
-    error_message = "custom_networking_subnet_cidrs must not have more entries than azs. Got ${length(var.custom_networking_subnet_cidrs)} subnet CIDRs but only ${length(var.azs)} availability zones."
-  }
 }
 
 ##################################################################################
