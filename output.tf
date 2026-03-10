@@ -26,9 +26,9 @@ output "public_subnets_cidrs" {
   value       = var.shim ? data.aws_subnet.public_subnets[*].cidr_block : var.public_subnets_cidrs
 }
 
-output "eks_pod_subnet_ids" {
-  description = "List of pod subnet IDs for EKS custom networking (from secondary CIDR)"
-  value       = var.shim ? var.custom_networking_subnet_ids : aws_subnet.custom_networking_eks_pods[*].id
+output "custom_networking_subnet_ids" {
+  description = "List of custom networking subnet IDs (from secondary CIDR)"
+  value       = var.shim && var.enable_custom_networking ? var.custom_networking_subnet_ids : aws_subnet.custom_networking_eks_pods[*].id
 }
 
 output "region" {

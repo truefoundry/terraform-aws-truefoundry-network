@@ -67,6 +67,7 @@ resource "aws_subnet" "custom_networking_eks_pods" {
   vpc_id            = module.aws-vpc-module[0].vpc_id
   cidr_block        = var.custom_networking_subnet_cidrs[count.index]
   availability_zone = var.azs[count.index]
+  tags              = local.tags
 
   depends_on = [module.aws-vpc-module]
 }
