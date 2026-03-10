@@ -61,7 +61,7 @@ resource "aws_vpc_endpoint" "s3" {
 }
 
 
-resource "aws_subnet" "custom_networking_eks_pods" {
+resource "aws_subnet" "custom_networking" {
   count = var.shim == false && var.enable_custom_networking == true ? length(var.custom_networking_subnet_cidrs) : 0
 
   vpc_id            = module.aws-vpc-module[0].vpc_id
@@ -72,9 +72,9 @@ resource "aws_subnet" "custom_networking_eks_pods" {
   depends_on = [module.aws-vpc-module]
 }
 
-resource "aws_route_table_association" "custom_networking_eks_pods" {
+resource "aws_route_table_association" "custom_networking" {
   count = var.shim == false && var.enable_custom_networking == true ? length(var.custom_networking_subnet_cidrs) : 0
 
-  subnet_id      = aws_subnet.custom_networking_eks_pods[count.index].id
+  subnet_id      = aws_subnet.custom_networking[count.index].id
   route_table_id = element(module.aws-vpc-module[0].private_route_table_ids, count.index)
 }
