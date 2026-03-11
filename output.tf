@@ -26,6 +26,11 @@ output "public_subnets_cidrs" {
   value       = var.shim ? data.aws_subnet.public_subnets[*].cidr_block : var.public_subnets_cidrs
 }
 
+output "custom_networking_subnet_ids" {
+  description = "List of custom networking subnet IDs (from secondary CIDR)"
+  value       = var.shim && var.enable_custom_networking ? var.custom_networking_subnet_ids : aws_subnet.custom_networking[*].id
+}
+
 output "region" {
   description = "AWS region of VPC"
   value       = var.aws_region

@@ -28,6 +28,8 @@ module "aws-vpc-module" {
   flow_log_log_format       = "$${version} $${account-id} $${instance-id} $${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport} $${protocol} $${packets} $${bytes} $${start} $${end} $${action} $${log-status} $${az-id} $${pkt-srcaddr} $${pkt-dstaddr} $${pkt-src-aws-service} $${pkt-dst-aws-service} $${flow-direction} $${traffic-path}"
   vpc_flow_log_tags         = local.tags
 
+  secondary_cidr_blocks = var.secondary_cidr_blocks
+
   public_subnet_tags = merge(
     {
       "kubernetes.io/cluster/${var.cluster_name}" = "shared"
@@ -56,4 +58,23 @@ resource "aws_vpc_endpoint" "s3" {
   vpc_id       = module.aws-vpc-module[0].vpc_id
   service_name = "com.amazonaws.${var.aws_region}.s3"
   tags         = local.tags
+}
+
+
+resource "aws_subnet" "custom_networking" {
+  count = var.shim == false && var.enable_custom_networking == true ? length(var.custom_networking_subnet_cidrs) : 0
+
+  vpc_id            = module.aws-vpc-module[0].vpc_id
+  cidr_block        = var.custom_networking_subnet_cidrs[count.index]
+  availability_zone = var.azs[count.index]
+  tags              = local.tags
+
+  depends_on = [module.aws-vpc-module]
+}
+
+resource "aws_route_table_association" "custom_networking" {
+  count = var.shim == false && var.enable_custom_networking == true ? length(var.custom_networking_subnet_cidrs) : 0
+
+  subnet_id      = aws_subnet.custom_networking[count.index].id
+  route_table_id = element(module.aws-vpc-module[0].private_route_table_ids, count.index)
 }
