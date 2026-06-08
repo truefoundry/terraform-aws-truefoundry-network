@@ -44,7 +44,7 @@ Truefoundry AWS Network Module
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name needed for Shared cluster | `string` | `""` | no |
 | <a name="input_custom_networking_subnet_cidrs"></a> [custom\_networking\_subnet\_cidrs](#input\_custom\_networking\_subnet\_cidrs) | List of CIDR blocks for EKS custom networking subnets (one per AZ) from the secondary CIDR | `list(string)` | `[]` | no |
 | <a name="input_custom_networking_subnet_ids"></a> [custom\_networking\_subnet\_ids](#input\_custom\_networking\_subnet\_ids) | SHIM: Pre-existing pod subnet IDs for EKS custom networking | `list(string)` | `[]` | no |
-| <a name="input_disable_default_tags"></a> [disable\_default\_tags](#input\_disable\_default\_tags) | Disable module-managed default tags | `bool` | `false` | no |
+| <a name="input_disable_default_tags"></a> [disable\_default\_tags](#input\_disable\_default\_tags) | Disable the TrueFoundry module-injected audit tags (truefoundry-*); only var.tags is applied. Does NOT affect the AWS provider default\_tags. | `bool` | `false` | no |
 | <a name="input_enable_custom_networking"></a> [enable\_custom\_networking](#input\_enable\_custom\_networking) | Enable custom networking | `bool` | `false` | no |
 | <a name="input_enable_nat_gateway"></a> [enable\_nat\_gateway](#input\_enable\_nat\_gateway) | Enable NAT Gateway - This is necessary for the cluster to work | `bool` | `true` | no |
 | <a name="input_external_nat_ip_ids"></a> [external\_nat\_ip\_ids](#input\_external\_nat\_ip\_ids) | External NAT IPs IDs | `list(string)` | `[]` | no |
