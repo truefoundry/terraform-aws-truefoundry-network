@@ -2,13 +2,13 @@
 # Uses mock_provider so no AWS credentials are required.
 # Asserts that:
 #   1. Caller-supplied tags appear on a root-module resource (aws_vpc_endpoint.s3).
-#   2. Module-managed default tags (terraform-module, terraform, cluster-name) appear.
+#   2. Module-managed default tags (truefoundry-*) appear.
 #   3. When disable_default_tags = true, default tags are absent.
 
 mock_provider "aws" {}
 
 # ── run 1: default tags + caller tags are merged ────────────────────────────
-run "tags_merged" {
+run "tags_applied" {
   command = plan
 
   variables {
@@ -31,18 +31,13 @@ run "tags_merged" {
   }
 
   assert {
-    condition     = aws_vpc_endpoint.s3[0].tags["terraform-module"] == "network"
-    error_message = "default tag 'terraform-module=network' was not set on aws_vpc_endpoint.s3"
+    condition     = aws_vpc_endpoint.s3[0].tags["truefoundry-terraform-module"] == "network"
+    error_message = "default tag 'truefoundry-terraform-module=network' was not set on aws_vpc_endpoint.s3"
   }
 
   assert {
-    condition     = aws_vpc_endpoint.s3[0].tags["terraform"] == "true"
-    error_message = "default tag 'terraform=true' was not set on aws_vpc_endpoint.s3"
-  }
-
-  assert {
-    condition     = aws_vpc_endpoint.s3[0].tags["cluster-name"] == "test"
-    error_message = "default tag 'cluster-name=test' was not set on aws_vpc_endpoint.s3"
+    condition     = aws_vpc_endpoint.s3[0].tags["truefoundry-managed"] == "true"
+    error_message = "default tag 'truefoundry-managed=true' was not set on aws_vpc_endpoint.s3"
   }
 }
 
@@ -70,7 +65,7 @@ run "disable_default_tags" {
   }
 
   assert {
-    condition     = !contains(keys(aws_vpc_endpoint.s3[0].tags), "terraform-module")
-    error_message = "default tag 'terraform-module' should be absent when disable_default_tags=true"
+    condition     = !contains(keys(aws_vpc_endpoint.s3[0].tags), "truefoundry-terraform-module")
+    error_message = "default tag 'truefoundry-terraform-module' should be absent when disable_default_tags=true"
   }
 }

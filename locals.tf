@@ -4,9 +4,9 @@ locals {
   flow_logs_bucket_arn = var.flow_logs_enable ? module.vpc_flow_logs_bucket[0].s3_bucket_arn : null
 
   default_tags = {
-    "terraform-module" = "network"
-    "terraform"        = "true"
-    "cluster-name"     = var.cluster_name
+    "truefoundry-terraform-module" = "network"
+    "truefoundry-managed"          = "true"
+    "truefoundry-cluster-name"     = var.cluster_name
   }
 
   tags = merge(var.disable_default_tags ? {} : local.default_tags, var.tags)
