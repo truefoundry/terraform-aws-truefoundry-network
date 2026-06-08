@@ -137,6 +137,12 @@ variable "tags" {
   description = "AWS Tags common to all the resources created"
 }
 
+variable "disable_default_tags" {
+  type        = bool
+  default     = false
+  description = "Disable module-managed default tags"
+}
+
 ##################################################################################
 ## Flow logs
 ##################################################################################
