@@ -137,6 +137,12 @@ variable "tags" {
   description = "AWS Tags common to all the resources created"
 }
 
+variable "disable_default_tags" {
+  type        = bool
+  default     = false
+  description = "Disable the TrueFoundry module-injected audit tags (truefoundry-*); only var.tags is applied. Does NOT affect the AWS provider default_tags."
+}
+
 ##################################################################################
 ## Flow logs
 ##################################################################################

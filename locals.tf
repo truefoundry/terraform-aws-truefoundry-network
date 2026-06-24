@@ -3,14 +3,14 @@ locals {
 
   flow_logs_bucket_arn = var.flow_logs_enable ? module.vpc_flow_logs_bucket[0].s3_bucket_arn : null
 
-  tags = merge(
-    {
-      "terraform-module" = "network"
-      "terraform"        = "true"
-      "cluster-name"     = var.cluster_name
-    },
-    var.tags
-  )
+  default_tags = {
+    "truefoundry-terraform-module" = "network"
+    "truefoundry-managed"          = "true"
+    "truefoundry-cluster-name"     = var.cluster_name
+    "cluster-name"                 = var.cluster_name
+  }
+
+  tags = merge(var.disable_default_tags ? {} : local.default_tags, var.tags)
   required_private_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
     "subnet"                                    = "private"
