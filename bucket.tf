@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "flow_logs_bucket_policy" {
     }
     condition {
       test     = "ArnLike"
-      values   = ["arn:aws:logs:us-east-1:${var.aws_account_id}:*"]
+      values   = ["arn:aws:logs:${var.aws_region}:${var.aws_account_id}:*"]
       variable = "aws:SourceArn"
     }
   }
@@ -73,7 +73,7 @@ data "aws_iam_policy_document" "flow_logs_bucket_policy" {
     }
     condition {
       test     = "ArnLike"
-      values   = ["arn:aws:logs:us-east-1:${var.aws_account_id}:*"]
+      values   = ["arn:aws:logs:${var.aws_region}:${var.aws_account_id}:*"]
       variable = "aws:SourceArn"
     }
   }
