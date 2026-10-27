@@ -54,10 +54,11 @@ module "aws-vpc-module" {
 }
 
 resource "aws_vpc_endpoint" "s3" {
-  count        = var.shim == true ? 0 : 1
-  vpc_id       = module.aws-vpc-module[0].vpc_id
-  service_name = "com.amazonaws.${var.aws_region}.s3"
-  tags         = local.tags
+  count           = var.shim == true ? 0 : 1
+  vpc_id          = module.aws-vpc-module[0].vpc_id
+  service_name    = "com.amazonaws.${var.aws_region}.s3"
+  route_table_ids = module.aws-vpc-module[0].private_route_table_ids
+  tags            = local.tags
 }
 
 
